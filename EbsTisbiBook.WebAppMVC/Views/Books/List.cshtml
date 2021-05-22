@@ -1,0 +1,107 @@
+﻿@model BooksListViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/list.css">
+    <link rel="stylesheet" href="~/css/shared.css">
+    <title>Document</title>
+</head>
+<body>
+    <section id="content" class="content">
+        <div class="main-container">
+            <div class="wrapper">
+                <form method="get">
+                    <div class="search-container">
+                        <div class="icon"><img src="~/img/books/list/search-icon.svg" alt="srch"></div>
+                        <input type="search" id="search" name="searchText" placeholder="Поиск...">
+                    </div>
+                    <div class="search-helpers">
+                        <div class="books-count">
+                            <span class="search-helpers-item">Всего найдено: @Model.Count</span>
+                        </div>
+                        <div class="sort-by-year">
+                            <a class="search-helpers-item" asp-controller="Books"
+                               asp-action="List" asp-route-sortOrder="@(Model.SortViewModel.PubyearSort)"
+                               asp-route-name="@(Model.FilterViewModel.SearchText)"
+                               asp-route-pubyearMin="@(Model.FilterViewModel.SelectedPubyearMin)"
+                               asp-route-pubyearMax="@(Model.FilterViewModel.SelectedPubyearMax)"
+                               asp-route-subject="@(Model.FilterViewModel.SelectedPubhouse)">Год издания</a>
+                            @if (Model.SortViewModel.PubyearSort == BooksSortState.PubyearAsc)
+                            {
+                                <img src="~/img/books/list/sort-icon.svg" style="transform: rotate(180deg)">
+                            }
+                            else
+                            {
+                                <img src="~/img/books/list/sort-icon.svg">
+                            }
+                        </div>
+                    </div>
+                    <div class="books-filters-group">
+                        <div class="books-container">
+                            <ul>
+                                @foreach (var book in Model.Books)
+                                {
+                                    <li>
+                                        @await Html.PartialAsync("_BooksListItem", book)
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="filters-box">
+                            <div class="filters-container">
+                                <div class="caption">
+                                    Год издания
+                                </div>
+                                <ul class="pubdates">
+                                    <li>
+                                        От
+                                    </li>
+                                    <li>
+                                        <input name="pubyearMin" value="@Model.FilterViewModel.SelectedPubyearMin" />
+                                    </li>
+                                    <li>
+                                        До
+                                    </li>
+                                    <li>
+                                        <input name="pubyearMax" value="@Model.FilterViewModel.SelectedPubyearMax" />
+                                    </li>
+                                </ul>
+                                <div class="caption">
+                                    Издатель
+                                </div>
+                                <select name="pubhouse" asp-items="@Model.FilterViewModel.Pubhouses">
+                                </select>
+                                <div class="caption">
+                                    Авторы
+                                </div>
+                                <div class="authors-container">
+                                    <select>
+                                    </select>
+                                </div>
+                                <div class="authors-buttons-container">
+                                    <input class="authors-button" id="authors-button-add" type="image" src="~/img/books/list/add-author.svg" alt="+">
+                                    <input class="authors-button" id="authors-button-remove" type="image" src="~/img/books/list/remove-author.svg" alt="-">
+                                </div>
+                                <input type="submit" value="фильтр" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <page-link page-model="Model.PageViewModel" page-action="List"
+                           page-url-name="@(Model.FilterViewModel.SearchText)"
+                           page-url-subject="@(Model.FilterViewModel.SelectedPubhouse)"
+                           page-url-sortorder="@(Model.SortViewModel.Current)">
+                </page-link>
+            </div>
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/books/list.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+    
+    
+    <title>Document</title>
+</head>
+<body>
+    <header id="header" class="header">
+        <div class="wrapper">
+            <div class="nav">
+                <ul class="menu">
+                    <li>
+                        <a href="#">
+                            Главная
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Издания
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            О нас
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Помощь
+                        </a>
+                    </li>
+                </ul>
+                <div class="account">
+                    <a href="#" class="username">
+                        Меховников Олег Максимович
+                    </a>
+                    <img src="~/img/header/account-icon.svg" alt="Account icon" class="account-icon">
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <div>
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer id="footer" class="footer">
+        <div class="wrapper">
+            <div class="contacts">
+                <img src="~/img/footer/phone-call-icon.svg" alt="Phone call icon">
+                <a class="phone-number" href="tel:+78005002684">8 800 500-26-84 </a>
+                <ul class="social-networks">
+                    <li>
+                        <a href="#">
+                            <img src="~/img/footer/vk-icon.svg" alt="vk">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="~/img/footer/facebook-icon.svg" alt="facebook">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="~/img/footer/tik-tok-icon.svg" alt="tiktok">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="~/img/footer/telegram-icon.svg" alt="telegram">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="~/img/footer/odnoklassniki-icon.svg" alt="odnoklassniki">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

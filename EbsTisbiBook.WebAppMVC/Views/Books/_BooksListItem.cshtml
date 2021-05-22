@@ -1,0 +1,24 @@
+﻿@model EbsTisbiBook.WebAppMVC.Models.Library.Book
+<div class="book-card-container">
+    <div class="cover-button-group">
+        <div class="book-background">
+            <img src="@(Model.Image)" alt="Book cover">
+        </div>
+        <button class="read-book-btn">
+            Подробнее
+        </button>
+    </div>
+    <div class="text-container">
+        <div class="book-title">
+            @Model.Title
+        </div>
+        <div class="book-authors">
+            Риман Б., Гончарова В.Л., Пуанкаре А., Брауэр Л.Э.Я., Гёдель Курт, Коэн П.Дж.,
+            Вейль Герман, Владимиров Ю.С., Гуц А.К., Визгин Вл.П., Ефремов А.П., Павлов Д.Г.,
+            Полищук
+        </div>
+        <div class="book-description">
+            @Model.Description
+        </div>
+    </div>
+</div>

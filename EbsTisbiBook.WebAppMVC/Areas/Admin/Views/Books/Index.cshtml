@@ -1,0 +1,108 @@
+﻿@model IEnumerable<EbsTisbiBook.WebAppMVC.Models.Library.Book>
+
+@{
+    ViewData["Title"] = "Список изданий";
+    Layout = "~/Views/Admin/Shared/_AdminLayout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Создать</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleAdditional)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Liability)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pubyear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Isbn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fgos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pubhouse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pubtype)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialPurpose)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleAdditional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Liability)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pubyear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isbn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fgos.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pubhouse.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pubtype.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecialPurpose.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
