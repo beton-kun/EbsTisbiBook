@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Book
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,93 +8,65 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/shared.css">
-    <link rel="stylesheet" href="css/book.css">
+    <link rel="stylesheet" href="~/css/shared.css">
+    <link rel="stylesheet" href="~/css/book.css">
 
     <title>Document</title>
 </head>
 <body>
-    <header id="header" class="header">
-        <div class="wrapper">
-            <div class="nav">
-                <ul class="menu">
-                    <li>
-                        <a href="#">
-                            Главная
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Издания
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            О нас
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Помощь
-                        </a>
-                    </li>
-                </ul>
-                <div class="account">
-                    <a href="#" class="username">
-                        Меховников Олег Максимович
-                    </a>
-                    <img src="img/header/account-icon.svg" alt="Account icon" class="account-icon">
-                </div>
-
-            </div>
-
-        </div>
-    </header>
-
     <section id="content" class="content">
         <div class="main-container">
             <div class="wrapper">
                 <div class="cover-info-group">
                     <div>
                         <div class="book-background">
-                            <img src="img/book-cover.jpg" alt="">
+                            <img class="book-cover" src="@Model.Image" alt="">
                         </div>
-                        <button class="read-book-btn">
-                            Читать на IPR BOOKS
-                        </button>
+                        <form action="@Model.Url">
+                            <button class="read-book-btn" type="submit">
+                                Читать
+                            </button>
+                        </form>
                     </div>
                     <div class="about-book">
                         <div class="book-info-container">
                             <div class="text-container">
                                 <h3 class="title">
-                                    Метафизика. Век XXI. Альманах. Выпуск 4. Метафизика и математика (книга)
+                                    @Model.Title
                                 </h3>
                                 <hr size=3px color="#fff">
                                 <div class="attributes-container">
                                     <dl class="attribute">
                                         <dt>Издательство:</dt>
-                                        <dd>Лаборатория знаний</dd>
+                                        <dd>@Model.Pubhouse.Name</dd>
                                     </dl>
                                     <dl class="attribute">
                                         <dt>Авторы:</dt>
                                         <dd>
-                                            Риман Б., Гончарова В.Л., Пуанкаре А., Брауэр Л.Э.Я.,
-                                            Гёдель Курт, Коэн П.Дж., Вейль Герман, Владимиров Ю.С., Гуц А.К.,
-                                            Визгин Вл.П., Ефремов А.П., Павлов Д.Г., Полищук Р.Ф., Шафаревич И.Р.,
-                                            Гайденко П.П., Миронов В.В., Огурцов А.П., Перминов В.Я.
+                                            @foreach (var author in Model.Authors)
+                                            {
+                                                @($"{author.Surname} {author.Name[0]}. {author.Middlename[0]}.,")
+                                            }
                                         </dd>
                                     </dl>
-                                    <dl class="attribute">
-                                        <dt>Сведения об ответственности:</dt>
-                                        <dd>ред. Владимиров Ю.С.</dd>
-                                    </dl>
-                                    <dl class="attribute">
-                                        <dt>Сведения об издании:</dt>
-                                        <dd>4-е издание</dd>
-                                    </dl>
+                                    @if (Model.Liability != null)
+                                    {
+                                        <dl class="attribute">
+                                            <dt>Сведения об ответственности:</dt>
+                                            <dd>@Model.Liability</dd>
+                                        </dl>
+                                    }
+
+                                    @if (Model.TitleAdditional != null)
+                                    {
+                                        <dl class="attribute">
+                                            <dt>Сведения об издании:</dt>
+                                            <dd>@Model.TitleAdditional</dd>
+                                        </dl>
+                                    }
                                     <dl class="attribute">
                                         <dt>Год издания:</dt>
-                                        <dd>2020</dd>
+                                        <dd>@Model.Pubyear</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -105,16 +78,7 @@
                                 </h3>
                                 <hr size=3px color="#fff">
                                 <div class="attributes-container">
-                                    Настоящий выпуск посвящен философскому (метафизическому) анализу оснований
-                                    математики и ее соотношению с физикой. Сборник состоит из четырех частей.
-                                    В первой части представлены статьи отечественных математиков, в которых
-                                    рассматриваются фундаментальные проблемы математики. Во вторую часть вошли
-                                    статьи выдающихся ученых прошлого об основаниях математической науки.
-                                    Третья часть составлена из статей физиков-теоретиков, в которых обсуждаются
-                                    вопросы соотношения физики и математики. Наконец, в четвертую часть включены
-                                    работы философов об основаниях и ключевых проблемах математики. Для научных
-                                    работников (математиков, физиков и философов), преподавателей вузов,
-                                    студентов и широкого круга читателей, интересующихся основами мироздания.
+                                    @Model.Description
                                 </div>
                             </div>
                         </div>
@@ -125,12 +89,7 @@
                                 </h3>
                                 <hr size=3px color="#fff">
                                 <div class="attributes-container">
-                                    Метафизика. Век XXI. Альманах. Выпуск 4. Метафизика и математика
-                                    / Б. Риман, В. Л. Гончарова, А. Пуанкаре [и др.] ; под редакцией
-                                    Ю. С. Владимиров. — 4-е изд. — Москва : Лаборатория знаний, 2020. —
-                                    464 c. — ISBN 978-5-00101-714-1. — Текст : электронный // Электронно-библиотечная
-                                    система IPR BOOKS : [сайт]. — URL: https://www.iprbookshop.ru/6464.html
-                                    (дата обращения: 07.05.2021). — Режим доступа: для авторизир. пользователей
+                                    @Model.BibliographicRecord
                                 </div>
                             </div>
                         </div>
@@ -139,41 +98,5 @@
             </div>
         </div>
     </section>
-
-    <footer id="footer" class="footer">
-        <div class="wrapper">
-            <div class="contacts">
-                <img src="img/footer/phone-call-icon.svg" alt="Phone call icon">
-                <a class="phone-number" href="tel:+78005002684">8 800 500-26-84 </a>
-                <ul class="social-networks">
-                    <li>
-                        <a href="#">
-                            <img src="img/footer/vk-icon.svg" alt="vk">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="img/footer/facebook-icon.svg" alt="facebook">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="img/footer/tik-tok-icon.svg" alt="tiktok">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="img/footer/telegram-icon.svg" alt="telegram">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="img/footer/odnoklassniki-icon.svg" alt="odnoklassniki">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>

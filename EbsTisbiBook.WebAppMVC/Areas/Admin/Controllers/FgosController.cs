@@ -49,7 +49,7 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
         // GET: Fgos/Create
         public IActionResult Create()
         {
-            ViewData["UgnpId"] = new SelectList(_context.Ugnps, "Id", "Name");
+            ViewData["UgnpId"] = new SelectList(_context.Ugnp, "Id", "Name");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UgnpId"] = new SelectList(_context.Ugnps, "Id", "Name", fgos.UgnpId);
+            ViewData["UgnpId"] = new SelectList(_context.Ugnp, "Id", "Name", fgos.UgnpId);
             return View(fgos);
         }
 
@@ -83,7 +83,7 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
             {
                 return NotFound();
             }
-            ViewData["UgnpId"] = new SelectList(_context.Ugnps, "Id", "Name", fgos.UgnpId);
+            ViewData["UgnpId"] = new SelectList(_context.Ugnp, "Id", "Name", fgos.UgnpId);
             return View(fgos);
         }
 
@@ -119,7 +119,7 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UgnpId"] = new SelectList(_context.Ugnps, "Id", "Name", fgos.UgnpId);
+            ViewData["UgnpId"] = new SelectList(_context.Ugnp, "Id", "Name", fgos.UgnpId);
             return View(fgos);
         }
 

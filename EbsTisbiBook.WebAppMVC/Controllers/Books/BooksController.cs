@@ -20,23 +20,26 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Books
             _context = libraryContext;
         }
 
-        public async Task<IActionResult> List(int? pubhouse, int? pubyearMin, int? pubyearMax, int? author, string searchText, int page = 1,
+        public async Task<IActionResult> List(int? pubhouse, int? author, int? pubyearMin, int? pubyearMax, string searchText, int page = 1,
             BooksSortState sortOrder = BooksSortState.PubyearAsc)
         {
-            var pageSize = 3;   // количество элементов на странице
+            var pageSize = 4;   // количество элементов на странице
 
             //  фильтрация
-            IQueryable<Book> books = _context.Books.Include(b => b.Pubhouse);
+            IQueryable<Book> books = _context.Books
+                .Include(b => b.Pubhouse)
+                .Include(a => a.Authors);
 
             if (pubhouse != null && pubhouse != 0)
             {
                 books = books.Where(b => b.PubhouseId == pubhouse);
             }
 
-            var authors = _context.Authors
-                .Join(_context.AuthorBookMaps,
-                e => e.Id, e => e.Author.Id,
-                (author, authorBook) => new { Author = author, Book = authorBook.Book });
+            if (author != null && author != 0)
+            {
+                books = books.Where(b => b.Authors.Contains(
+                    _context.Authors.FirstOrDefault(a => a.Id == author)));
+            }
 
             pubyearMin ??= 0;
             pubyearMax ??= int.MaxValue;
@@ -71,11 +74,20 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Books
             {
                 PageViewModel = pageViewModel,
                 SortViewModel = new SortViewModel(sortOrder),
-                FilterViewModel = new FilterViewModel(_context.Pubhouses.ToList(), pubhouse, searchText, pubyearMin, pubyearMax),
+                FilterViewModel = new FilterViewModel(_context.Pubhouses.ToList(), pubhouse, _context.Authors.ToList(), author, searchText, pubyearMin, pubyearMax),
                 Books = items,
                 Count = foundCount
             };
             return View(viewModel);
+        }
+
+        public IActionResult Book(int id)
+        {
+            var model = _context.Books
+                .Include(b => b.Pubhouse)
+                .Include(a => a.Authors)
+                .FirstOrDefault(b => b.Id == id);
+            return View(model);
         }
     }
 }

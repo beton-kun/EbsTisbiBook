@@ -4,7 +4,7 @@
         <div class="book-background">
             <img src="@(Model.Image)" alt="Book cover">
         </div>
-        <button class="read-book-btn">
+        <button class="read-book-btn" asp-controller="Books" asp-action="Book" asp-route-id="@Model.Id">
             Подробнее
         </button>
     </div>
@@ -13,9 +13,10 @@
             @Model.Title
         </div>
         <div class="book-authors">
-            Риман Б., Гончарова В.Л., Пуанкаре А., Брауэр Л.Э.Я., Гёдель Курт, Коэн П.Дж.,
-            Вейль Герман, Владимиров Ю.С., Гуц А.К., Визгин Вл.П., Ефремов А.П., Павлов Д.Г.,
-            Полищук
+            @foreach(var author in Model.Authors)
+            {
+                @($"{author.Surname} {author.Name[0]}. {author.Middlename[0]}.,")
+            }
         </div>
         <div class="book-description">
             @Model.Description

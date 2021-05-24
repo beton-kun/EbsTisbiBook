@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using EbsTisbiBook.WebAppMVC.Models;
 using Microsoft.AspNetCore.Mvc.Razor;
+using EbsTisbiBook.WebAppMVC.Models.Infrastucture;
 
 namespace EbsTisbiBook
 {
@@ -62,6 +63,8 @@ namespace EbsTisbiBook
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            SeedData.EnsurePopulated(app);
         }
     }
 }

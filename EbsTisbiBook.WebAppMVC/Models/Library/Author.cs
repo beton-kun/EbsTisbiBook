@@ -8,11 +8,6 @@ namespace EbsTisbiBook.WebAppMVC.Models.Library
 {
     public partial class Author
     {
-        public Author()
-        {
-            AuthorBookMaps = new HashSet<AuthorBookMap>();
-        }
-
         public int Id { get; set; }
 
         [Display(Name = "Имя")]
@@ -24,6 +19,6 @@ namespace EbsTisbiBook.WebAppMVC.Models.Library
         [Display(Name = "Отчество")]
         public string Middlename { get; set; }
 
-        public virtual ICollection<AuthorBookMap> AuthorBookMaps { get; set; }
+        public ICollection<Book> Books { get; set; }
     }
 }

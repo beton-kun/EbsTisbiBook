@@ -43,4 +43,8 @@
     <None Include="wwwroot\img\index\button-right.svg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Identity\" />
+  </ItemGroup>
+
 </Project>

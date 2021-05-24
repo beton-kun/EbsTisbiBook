@@ -23,7 +23,7 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
         // GET: Ugnps
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Ugnps.ToListAsync());
+            return View(await _context.Ugnp.ToListAsync());
         }
 
         // GET: Ugnps/Details/5
@@ -34,7 +34,7 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
                 return NotFound();
             }
 
-            var ugnp = await _context.Ugnps
+            var ugnp = await _context.Ugnp
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ugnp == null)
             {
@@ -74,7 +74,7 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
                 return NotFound();
             }
 
-            var ugnp = await _context.Ugnps.FindAsync(id);
+            var ugnp = await _context.Ugnp.FindAsync(id);
             if (ugnp == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
                 return NotFound();
             }
 
-            var ugnp = await _context.Ugnps
+            var ugnp = await _context.Ugnp
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ugnp == null)
             {
@@ -140,15 +140,15 @@ namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ugnp = await _context.Ugnps.FindAsync(id);
-            _context.Ugnps.Remove(ugnp);
+            var ugnp = await _context.Ugnp.FindAsync(id);
+            _context.Ugnp.Remove(ugnp);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UgnpExists(int id)
         {
-            return _context.Ugnps.Any(e => e.Id == id);
+            return _context.Ugnp.Any(e => e.Id == id);
         }
     }
 }

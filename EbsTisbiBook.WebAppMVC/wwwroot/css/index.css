@@ -53,10 +53,17 @@
     line-height: 29px;
     align-items: center;
     text-align: center;
+    cursor: pointer;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+.offer-main-button:hover {
+    background: linear-gradient(97.14deg, #00DE31 -9.06%, #00A725 53.33%);
+}
 
+.offer-main-button:active {
+    background: linear-gradient(97.14deg, #00881E -9.06%, #009420 53.33%);
+}
 /* -----------Presentation------------ */
 
 .presentation-container {

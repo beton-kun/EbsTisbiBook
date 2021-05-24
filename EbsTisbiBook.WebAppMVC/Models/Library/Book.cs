@@ -8,10 +8,6 @@ namespace EbsTisbiBook.WebAppMVC.Models.Library
 {
     public partial class Book
     {
-        public Book()
-        {
-            AuthorBookMaps = new HashSet<AuthorBookMap>();
-        }
         public int Id { get; set; }
 
         [Required]
@@ -32,6 +28,9 @@ namespace EbsTisbiBook.WebAppMVC.Models.Library
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
+
+        [Display(Name = "Библиографическая запись")]
+        public string BibliographicRecord { get; set; }
 
         [Display(Name = "Тип публикации")]
         public int? PubtypeId { get; set; }
@@ -59,6 +58,6 @@ namespace EbsTisbiBook.WebAppMVC.Models.Library
         public virtual Pubhouse Pubhouse { get; set; }
         public virtual Pubtype Pubtype { get; set; }
         public virtual SpecialPurpose SpecialPurpose { get; set; }
-        public virtual ICollection<AuthorBookMap> AuthorBookMaps { get; set; }
+        public ICollection<Author> Authors { get; set; }
     }
 }

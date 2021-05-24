@@ -5,11 +5,16 @@ namespace EbsTisbiBook.WebAppMVC.Models.Library.ViewModels
 {
     public class FilterViewModel
     {
-        public FilterViewModel(List<Pubhouse> pubhouses, int? pubhouse, string searchText, int? pubyearMin, int? pubyearMax)
+        public FilterViewModel(List<Pubhouse> pubhouses, int? pubhouse, List<Author> authors, int? author, string searchText, int? pubyearMin, int? pubyearMax)
         {
             pubhouses.Insert(0, new Pubhouse { Name = "Все", Id = 0 });
             Pubhouses = new SelectList(pubhouses, "Id", "Name", pubhouse);
             SelectedPubhouse = pubhouse;
+
+            authors.Insert(0, new Author { Surname = "Все", Id = 0 });
+            Authors = new SelectList(authors, "Id", "Surname", author);
+            SelectedAuthor = author;
+
             SearchText = searchText;
             SelectedPubyearMin = pubyearMin == 0 ? null : pubyearMin;
             SelectedPubyearMax = pubyearMax == int.MaxValue ? null : pubyearMax;

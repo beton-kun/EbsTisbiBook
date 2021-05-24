@@ -28,7 +28,7 @@
     background: linear-gradient(97.14deg, #00D52F -9.06%, #009821 53.33%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 3px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 38px;
-
+    cursor: pointer;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -37,6 +37,14 @@
     text-align: center;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: background .55s ease;
+}
+
+.read-book-btn:hover {
+    background: linear-gradient(97.14deg, #00DE31 -9.06%, #00A725 53.33%);
+}
+.read-book-btn:active {
+    background: linear-gradient(97.14deg, #00881E -9.06%, #009420 53.33%);
 }
 
 /* ------------About book----------- */
@@ -60,6 +68,11 @@
     border-radius: 32px;
     width: 814.69px;
     margin-bottom: 24.33px;
+}
+
+.book-cover {
+    width: 225px;
+    height: 388px;
 }
 
 .publisher {

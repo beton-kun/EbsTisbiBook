@@ -124,7 +124,7 @@
     background: linear-gradient(97.14deg, #00D52F -9.06%, #009821 53.33%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 46px;
-
+    cursor: pointer;
     line-height: 15px;
     font-style: normal;
     font-weight: 600;
@@ -136,6 +136,13 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.read-book-btn:hover {
+    background: linear-gradient(97.14deg, #00DE31 -9.06%, #00A725 53.33%);
+}
+
+.read-book-btn:active {
+    background: linear-gradient(97.14deg, #00881E -9.06%, #009420 53.33%);
+}
 .book-background img {
     margin: auto;
     width: 80.71px;
@@ -271,19 +278,19 @@
     border: 1px solid #dee2e6;
 }
 
-    .page-link:hover {
-        z-index: 2;
-        color: #0056b3;
-        text-decoration: none;
-        background-color: #e9ecef;
-        border-color: #dee2e6;
-    }
+.page-link:hover {
+    z-index: 2;
+    color: #0056b3;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
 
-    .page-link:focus {
-        z-index: 2;
-        outline: 0;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    }
+.page-link:focus {
+    z-index: 2;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
 
 .page-item:first-child .page-link {
     margin-left: 0;

@@ -19,14 +19,13 @@ namespace EbsTisbiBook.WebAppMVC.Models
         }
 
         public virtual DbSet<Author> Authors { get; set; }
-        public virtual DbSet<AuthorBookMap> AuthorBookMaps { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Fgos> Fgos { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Pubhouse> Pubhouses { get; set; }
         public virtual DbSet<Pubtype> Pubtypes { get; set; }
         public virtual DbSet<SpecialPurpose> SpecialPurposes { get; set; }
-        public virtual DbSet<Ugnp> Ugnps { get; set; }
+        public virtual DbSet<Ugnp> Ugnp { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -52,23 +51,6 @@ namespace EbsTisbiBook.WebAppMVC.Models
                 entity.Property(e => e.Name).HasMaxLength(150);
 
                 entity.Property(e => e.Surname).HasMaxLength(150);
-            });
-
-            modelBuilder.Entity<AuthorBookMap>(entity =>
-            {
-                entity.ToTable("Author_book_map");
-
-                entity.HasKey(e => e.Id);
-
-                entity.HasOne(d => d.Author)
-                    .WithMany(p => p.AuthorBookMaps)
-                    .HasForeignKey(d => d.AuthorId)
-                    .HasConstraintName("FK_Author_book_map_Author");
-
-                entity.HasOne(d => d.Book)
-                    .WithMany(p => p.AuthorBookMaps)
-                    .HasForeignKey(d => d.BookId)
-                    .HasConstraintName("FK_Author_book_map_Book");
             });
 
             modelBuilder.Entity<Book>(entity =>
