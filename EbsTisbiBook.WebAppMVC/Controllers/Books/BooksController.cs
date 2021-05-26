@@ -8,9 +8,11 @@ using EbsTisbiBook.WebAppMVC.Models.Library.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Korzh.EasyQuery.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EbsTisbiBook.WebAppMVC.Controllers.Books
 {
+    [Authorize(Roles = "User")]
     public class BooksController : Controller
     {
         private readonly LibraryContext _context;

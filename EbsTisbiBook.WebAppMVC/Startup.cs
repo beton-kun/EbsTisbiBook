@@ -11,6 +11,9 @@ using Microsoft.Extensions.Hosting;
 using EbsTisbiBook.WebAppMVC.Models;
 using Microsoft.AspNetCore.Mvc.Razor;
 using EbsTisbiBook.WebAppMVC.Models.Infrastucture;
+using EbsTisbiBook.WebAppMVC.Models.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace EbsTisbiBook
 {
@@ -35,7 +38,27 @@ namespace EbsTisbiBook
             });
 
             services.AddScoped<LibraryContext>();
-            
+
+            services.AddSession();
+
+            services.AddDbContext<IdentityContext>(opts =>
+            {
+                opts.UseSqlServer(Configuration["ConnectionStrings:LibraryConnection"]);
+                opts.UseSqlServer(Configuration["ConnectionStrings:IdentityConnection"]);
+            });
+
+            services.AddIdentity<User, IdentityRole>(options =>
+            options.Password = new PasswordOptions
+            {
+                RequireDigit = true,
+                RequiredLength = 6,
+                RequireLowercase = true,
+                RequireUppercase = false,
+                RequireNonAlphanumeric = false
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<IdentityContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +74,7 @@ namespace EbsTisbiBook
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

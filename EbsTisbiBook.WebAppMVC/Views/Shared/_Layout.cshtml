@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shared.css">
-    
-    
+
+
     <title>Document</title>
 </head>
 <body>
@@ -27,21 +30,34 @@
                             Издания
                         </a>
                     </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <a asp-area="Admin" asp-controller="Books" asp-action="Index">
+                                Администрирование
+                            </a>
+                        </li>
+                    }
                     <li>
-                        <a href="#">
-                            О нас
-                        </a>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a class="nav__link" asp-controller="Account" asp-action="Logout">
+                                Выход
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="nav__link" asp-controller="Account" asp-action="Login">
+                                Вход
+                            </a>
+                        }
                     </li>
-                    <li>
-                        <a href="#">
-                            Помощь
-                        </a>
-                    </li>
+
                 </ul>
                 <div class="account">
-                    <a href="#" class="username">
-                        Меховников Олег Максимович
-                    </a>
+                    <div class="username">
+                        @User.Identity.Name
+                    </div>
                     <img src="~/img/header/account-icon.svg" alt="Account icon" class="account-icon">
                 </div>
             </div>

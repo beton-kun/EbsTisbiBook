@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EbsTisbiBook.WebAppMVC.Models;
 using EbsTisbiBook.WebAppMVC.Models.Library;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EbsTisbiBook.WebAppMVC.Controllers.Admin
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class FgosController : Controller
     {
         private readonly LibraryContext _context;

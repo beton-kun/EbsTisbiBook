@@ -4,7 +4,7 @@
         <div class="book-background">
             <img src="@(Model.Image)" alt="Book cover">
         </div>
-        <button class="read-book-btn" asp-controller="Books" asp-action="Book" asp-route-id="@Model.Id">
+        <button type="button" class="read-book-btn" asp-controller="Books" asp-action="Book" asp-route-id="@Model.Id">
             Подробнее
         </button>
     </div>
